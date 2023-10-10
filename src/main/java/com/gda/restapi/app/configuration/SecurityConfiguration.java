@@ -57,9 +57,9 @@ public class SecurityConfiguration {
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authenticationProvider(authenticationProvider)
 			.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) 
-			.csrf((csrf) -> csrf
-				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-				.csrfTokenRequestHandler(csrfTokenHandler::handle) 
+			.csrf((csrf) -> csrf.disable()
+//				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+//				.csrfTokenRequestHandler(csrfTokenHandler::handle) 
 			)
 			.addFilterAfter(new CsrfCookieFilter(), UsernamePasswordAuthenticationFilter.class)
 			.headers(header -> header.frameOptions(frame -> frame.sameOrigin()))
