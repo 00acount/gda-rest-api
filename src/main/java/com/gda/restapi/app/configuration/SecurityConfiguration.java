@@ -61,7 +61,7 @@ public class SecurityConfiguration {
 //				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //				.csrfTokenRequestHandler(csrfTokenHandler::handle) 
 			)
-			.addFilterAfter(new CsrfCookieFilter(), UsernamePasswordAuthenticationFilter.class)
+//			.addFilterAfter(new CsrfCookieFilter(), UsernamePasswordAuthenticationFilter.class)
 			.headers(header -> header.frameOptions(frame -> frame.sameOrigin()))
 			.logout(logout -> logout
 					.logoutUrl("/api/v1/logout")
