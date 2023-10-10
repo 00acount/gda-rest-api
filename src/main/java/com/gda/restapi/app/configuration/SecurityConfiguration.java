@@ -40,7 +40,9 @@ public class SecurityConfiguration {
 		var csrfTokenRepository = new CookieCsrfTokenRepository();
 		csrfTokenRepository.setCookieCustomizer(cookie -> cookie
 				.httpOnly(false)
-				.domain(frontendDomain.replaceFirst("https://|http://", "")));
+				.domain(frontendDomain.replaceFirst("https://|http://", ""))
+				.build());
+
 
 		http.cors(cors -> cors.configurationSource(corsConfigurationSource))
 			.authorizeHttpRequests((authorize) -> authorize
