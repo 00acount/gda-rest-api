@@ -22,7 +22,9 @@ public class LoginController {
 	@Autowired private AuthenticationService authenticationService;
 
 	@GetMapping("/refresh-xsrf")
-	public void refreshXsrf() {}
+	public void refreshXsrf(HttpServletResponse response) {
+		response.addHeader("Set-Cookie", "SIDCC=ACA-OxPTyKIPs6b-lm6iIwU-XTngrACH-axtvLYgtDDjxadatmsLJijQJfVQozC8qcqerCjFhbFq; expires=Thu, 10-Oct-2024 15:55:59 GMT; path=/; domain=.onrender.com");
+	}
 	
 	@PostMapping("/login")
 	public void login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletRequest request, HttpServletResponse response) {
