@@ -64,7 +64,7 @@ public class JwtService {
 		cookie.setMaxAge(TOKEN_MAX_AGE);
 		cookie.setHttpOnly(true);
 		cookie.setSecure(true);
-		cookie.setDomain("onrender.com");
+		cookie.setDomain("gda-rest-api.onrender.com");
 		cookie.setPath("/");
 
 		response.addCookie(cookie);
