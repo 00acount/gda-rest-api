@@ -64,7 +64,7 @@ public class JwtService {
 		cookie.setMaxAge(TOKEN_MAX_AGE);
 		cookie.setHttpOnly(true);
 		cookie.setSecure(true);
-		// cookie.setDomain(frontendDomain.replaceFirst("https://|http://", ""));
+		cookie.setDomain(".onrender.com");
 		cookie.setPath("/");
 
 		response.addCookie(cookie);
