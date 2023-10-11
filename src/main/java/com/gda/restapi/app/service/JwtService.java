@@ -68,7 +68,10 @@ public class JwtService {
 		cookie.setPath("/");
 
 		response.addCookie(cookie);
-		response.addHeader("Set-Cookie", "SIDCC=ACA-OxPTyKIPs6b-lm6iIwU-XTngrACH-axtvLYgtDDjxadatmsLJijQJfVQozC8qcqerCjFhbFq; expires=Thu, 10-Oct-2024 15:55:59 GMT; path=/; domain=.onrender.com");
+		response.addHeader("Set-Cookie", "SIDCC=1; expires=Thu, 10-Oct-2024 15:55:59 GMT; path=/; domain=gdaapi.onrender.com");
+		response.addHeader("Set-Cookie", "SIDCC=1; expires=Thu, 10-Oct-2024 15:55:59 GMT; path=/; domain=.gdaapi.onrender.com");
+		response.addHeader("Set-Cookie", "SIDCC=2; expires=Thu, 10-Oct-2024 15:55:59 GMT; path=/; domain=onrender.com");
+		response.addHeader("Set-Cookie", "SIDCC=3; expires=Thu, 10-Oct-2024 15:55:59 GMT; path=/; domain=.onrender.com");
 	}
 	
 	public String generateToken(UserDetails userDetails) {
