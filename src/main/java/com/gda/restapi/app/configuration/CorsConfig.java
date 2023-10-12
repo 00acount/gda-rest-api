@@ -18,7 +18,7 @@ public class CorsConfig {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("http://" + frontendDomain + ":5173"));
+		configuration.setAllowedOrigins(Arrays.asList(frontendDomain));
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
 		configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.addExposedHeader("TOKEN");
