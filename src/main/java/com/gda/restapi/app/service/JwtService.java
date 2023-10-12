@@ -1,6 +1,6 @@
 package com.gda.restapi.app.service;
 
-import java.security.Key;
+import java.security.Key; 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +29,6 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.constraints.Email;
 
 @Component
 public class JwtService {
@@ -101,7 +100,7 @@ public class JwtService {
 		String email = "";
 
 		try {
-			var credentials = objectMapper.readValue(subjectClaim.get(), JwtCredentials.class);
+			JwtCredentials credentials = objectMapper.readValue(subjectClaim.get(), JwtCredentials.class);
 			var user = userRepository.findById(credentials.getId());
 			email = user.get().getEmail();
 			} catch (JsonProcessingException e) {
