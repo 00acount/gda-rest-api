@@ -8,16 +8,17 @@ import org.springframework.stereotype.Service;
 import com.gda.restapi.app.exception.ResourceNotFoundException;
 import com.gda.restapi.app.model.Sector;
 import com.gda.restapi.app.model.Student;
+import com.gda.restapi.app.repository.AbsenceRepository;
 import com.gda.restapi.app.repository.SectorRepository;
 import com.gda.restapi.app.repository.StudentRepository;
 
 @Service
 public class StudentService {
 		
-	@Autowired
-	private StudentRepository studentRepository;
-	@Autowired
-	private SectorRepository sectorRepository;
+	@Autowired private StudentRepository studentRepository;
+	@Autowired private SectorRepository sectorRepository;
+	@Autowired private AbsenceRepository absenceRepository;
+
 
 	public long getCount() {
 		return studentRepository.count();
@@ -53,7 +54,14 @@ public class StudentService {
 	}
 
 	public void deleteById(int id) {
+		absenceRepository.deleteAbsencesByStudentId(id);
 		studentRepository.deleteById(id);
+	}
+
+	public void deleteBySectorId(int id) {
+		List<Student> students = studentRepository.findAllBySectorId(id);
+		students.stream()
+			.forEach(student -> this.deleteById(student.getId()));
 	}
 	
 }

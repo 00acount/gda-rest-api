@@ -17,13 +17,18 @@ public class AuthenticationService {
 	@Autowired UserDetailsService userDetailsService;
 
 	public void authenticate(AuthenticationRequest request) {
-		var user = userDetailsService.loadUserByUsername(request.getEmail());
+//		var user = userDetailsService.loadUserByUsername(request.getEmail());
+		var user = userRepository.findByEmail(request.getEmail()).get();
 		
 		var authentication = new UsernamePasswordAuthenticationToken(
 						request.getEmail(), request.getPassword(), user.getAuthorities());
 		
 		authenticationManager.authenticate(authentication);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
+		user.setIsOnline(true);
+		userRepository.save(user);
 	}
+
 
 }

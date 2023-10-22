@@ -63,5 +63,21 @@ public class GlobalExceptionHandler {
 		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 	}
+
+	//////////////////////////////////////////////////////////////////////////////////////
+
+	@ExceptionHandler(ResourceForbiddenException.class)
+	public ResponseEntity<ErrorResponse> handleResourceForbiddenException
+														(ResourceForbiddenException ex) {
+		
+		ErrorResponse errorResponse = new ErrorResponse();
+
+		errorResponse.setStatus(HttpStatus.FORBIDDEN.value());
+		errorResponse.setError("Forbidden Request");
+		errorResponse.setMessage(ex.getMessage());
+		errorResponse.setTimestamp(LocalDateTime.now().withNano(0));
+		
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
+	}
 	
 }

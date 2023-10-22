@@ -40,4 +40,5 @@ public class AbsenceService {
 		getAbsencesSessionForUser(userId, sessionId);
 		return absenceRepository.saveAll(absences);
 	}
+	
 }

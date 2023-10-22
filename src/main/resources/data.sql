@@ -10,36 +10,15 @@ insert into student (first_name, last_name, apogee_code, birth_date, sector_id, 
 ('salah', 'ghanim', 24324, current_date(), 1, 'S6'),
 ('moad', 'modani', 24324, current_date(), 1, 'S6'),
 ('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
-('osama', 'jahri', 24324, current_date(), 1, 'S6'),
 ('ayman', 'wadi', 24324, current_date(), 1, 'S6');
 
 
-insert into user_app (first_name, last_name, email, password, registered_on, role) values
-('salah', 'ghanim', 'example1@example.com', 'password', current_date(), 'ADMIN'),
-('marwan', 'aarich', 'example4@example.com', '$2a$10$9YFiP8EmHhwIPhkZIaaMbOfagaYUdyHwddXTQS35yTLEBdCryQk.O', current_date(), 'USER'),
-('soufiane', 'modani', 'example2@example.com', 'password',  current_date(), 'ADMIN'),
-('adam', 'jawhari', 'example3@example.com', 'password', current_date(), 'ADMIN'),
-('yassine', 'modani', 'example5@example.com', '$2a$10$ZdNxI.ihMJ6quM7TdhRqFOb9oEXwk0z2tWz/r9CDAjj4cIT1F3gxK', current_date(), 'ADMIN');
+insert into user_app (first_name, last_name, email, password, registered_on, role, is_online) values
+('salah', 'ghanim', 'example1@example.com', '$2a$10$ZdNxI.ihMJ6quM7TdhRqFOb9oEXwk0z2tWz/r9CDAjj4cIT1F3gxK', current_date(), 'SUPER_ADMIN', false),
+('marwan', 'aarich', 'example2@example.com', '$2a$10$9YFiP8EmHhwIPhkZIaaMbOfagaYUdyHwddXTQS35yTLEBdCryQk.O', current_date(), 'USER', false),
+('soufiane', 'modani', 'example3@example.com', '$2a$10$ZdNxI.ihMJ6quM7TdhRqFOb9oEXwk0z2tWz/r9CDAjj4cIT1F3gxK',  current_date(), 'USER', false),
+('adam', 'jawhari', 'example4@example.com', '$2a$10$ZdNxI.ihMJ6quM7TdhRqFOb9oEXwk0z2tWz/r9CDAjj4cIT1F3gxK', current_date(), 'ADMIN', false),
+('yassine', 'modani', 'example5@example.com', '$2a$10$ZdNxI.ihMJ6quM7TdhRqFOb9oEXwk0z2tWz/r9CDAjj4cIT1F3gxK', current_date(), 'ADMIN', false);
 
 insert into module (name) values 
 ('module1'),
@@ -70,26 +49,13 @@ insert into absence values
 (2, 1, 'PRESENT'),
 (2, 2, 'ABSENT'),
 (2, 3, 'PRESENT'),
-(2, 4, 'ABSENT'),
-(2, 5, 'PRESENT'),
-(2, 6, 'ABSENT'),
-(2, 7, 'PRESENT'),
-(2, 8, 'ABSENT'),
-(2, 9, 'PRESENT'),
-(2, 10, 'ABSENT'),
-(2, 11, 'PRESENT'),
-(2, 12, 'ABSENT'),
-(2, 13, 'PRESENT'),
-(2, 14, 'ABSENT'),
-(2, 15, 'ABSENT'),
-(2, 16, 'ABSENT'),
-(2, 17, 'ABSENT'),
-(2, 18, 'ABSENT'),
-(2, 19, 'ABSENT'),
-(2, 20, 'ABSENT'),
-(2, 21, 'ABSENT'),
-(2, 22, 'ABSENT'),
-(2, 23, 'ABSENT'),
-(2, 24, 'ABSENT'),
-(2, 25, 'PRESENT');
+(2, 4, 'ABSENT');
 
+
+
+
+--insert into user_app (first_name, last_name, email, password, registered_on, role, is_online) values
+--('salah', 'ghanim', 'example1@example.com', '$2a$10$ZdNxI.ihMJ6quM7TdhRqFOb9oEXwk0z2tWz/r9CDAjj4cIT1F3gxK', current_date, 'SUPER_ADMIN', true),
+--('ayman', 'elwadi', 'example3@example.com', '$2a$10$ZdNxI.ihMJ6quM7TdhRqFOb9oEXwk0z2tWz/r9CDAjj4cIT1F3gxK', current_date, 'USER', true),
+----('yassine', 'modani', 'example5@example.com', '$2a$10$ZdNxI.ihMJ6quM7TdhRqFOb9oEXwk0z2tWz/r9CDAjj4cIT1F3gxK', current_date, 'ADMIN', true),
+--('mustafa', 'bouzghar', 'example7@example.com', '$2a$10$ZdNxI.ihMJ6quM7TdhRqFOb9oEXwk0z2tWz/r9CDAjj4cIT1F3gxK', current_date, 'ADMIN', true);

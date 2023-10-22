@@ -30,8 +30,7 @@ public class Absence {
 	private String status;
 
 
-	@Getter
-	@Setter
+	@Data
 	public static class AbsenceId implements Serializable {
 
 		private static final long serialVersionUID = -5446070210833006199L;

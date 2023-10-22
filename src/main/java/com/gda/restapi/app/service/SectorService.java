@@ -12,8 +12,10 @@ import com.gda.restapi.app.repository.SectorRepository;
 @Service
 public class SectorService {
 
-	@Autowired
-	private SectorRepository sectorRepository;
+	@Autowired private SectorRepository sectorRepository;
+	@Autowired private ModuleService moduleService;
+	@Autowired private StudentService studentService;
+	@Autowired private SessionService sessionService;
 	
 	public long getCount() {
 		return sectorRepository.count();
@@ -35,6 +37,10 @@ public class SectorService {
 	}
 
 	public void deleteById(int id) {
+		studentService.deleteBySectorId(id);
+		sessionService.deleteBySectorId(id);
+		moduleService.deleteBySectorId(id);
+
 		sectorRepository.deleteById(id);
 	}
 

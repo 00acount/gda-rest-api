@@ -16,10 +16,9 @@ import com.gda.restapi.app.repository.SectorRepository;
 @Service
 public class ModuleService {
 
-	@Autowired
-	private ModuleRepository moduleRepository;
-	@Autowired
-	private SectorRepository sectorRepository;
+	@Autowired private ModuleRepository moduleRepository;
+	@Autowired private SectorRepository sectorRepository;
+	@Autowired private SessionService sessionService;
 	
 	public long getCount() {
 		return moduleRepository.count();
@@ -60,6 +59,36 @@ public class ModuleService {
 	}
 
 	public void deleteById(int id) {
+		sessionService.deleteByModuleId(id);
 		moduleRepository.deleteById(id);
 	}
+
+	public void deleteBySectorId(int id) {
+		List<Module> modules = moduleRepository.findAllBySectorId(id);
+		modules.stream().forEach(module -> {
+			boolean isSectorExist = module.getSectors()
+										.stream().anyMatch(sector -> sector.getId() == id);
+			int sectorsNumber = module.getSectors().size();
+			
+			
+
+			if (!isSectorExist) return;
+
+			if (sectorsNumber == 1) {
+				this.deleteById(module.getId());
+				return;
+			}
+			
+			if (sectorsNumber > 1) {
+				module.getSectors().removeIf(sector -> sector.getId() == id);
+				moduleRepository.save(module);
+				return;
+			}
+					
+			
+			
+		});
+
+	}
+
 }

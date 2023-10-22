@@ -68,7 +68,7 @@ public class SessionController {
 
 	//	GET '/users/{id}/sessions' //
 	@GetMapping("user/users/{id}/sessions")
-	@PreAuthorize("@sessionGuard.IsBelongToUserId(#id)")
+//	@PreAuthorize("@sessionGuard.IsBelongToUserId(#id)")
 	public ResponseEntity<MappingJacksonValue> retrieveUserSessions(@PathVariable String id) {
 		int intId = 0;
 		try {
@@ -104,7 +104,7 @@ public class SessionController {
 
 	//	DELETE '/users/{id}/sessions/{sid}' //
 	@DeleteMapping("user/users/{id}/sessions/{sid}")
-	@PreAuthorize("@sessionGuard.IsBelongToUserId(#id)")
+//	@PreAuthorize("@sessionGuard.IsBelongToUserId(#id)")
 	public ResponseEntity<Void> deleteUserSession(@PathVariable String id, @PathVariable String sid) {
 		int sessionId = 0;
 		try {

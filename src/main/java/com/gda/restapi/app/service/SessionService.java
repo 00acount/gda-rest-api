@@ -11,6 +11,7 @@ import com.gda.restapi.app.model.Module;
 import com.gda.restapi.app.model.Sector;
 import com.gda.restapi.app.model.Session;
 import com.gda.restapi.app.model.User;
+import com.gda.restapi.app.repository.AbsenceRepository;
 import com.gda.restapi.app.repository.ModuleRepository;
 import com.gda.restapi.app.repository.SectorRepository;
 import com.gda.restapi.app.repository.SessionRepository;
@@ -19,14 +20,11 @@ import com.gda.restapi.app.repository.UserRepository;
 @Service
 public class SessionService {
 
-	@Autowired
-	private SessionRepository sessionRepository;
-	@Autowired
-	private UserRepository userRepository;
-	@Autowired
-	private SectorRepository sectorRepository;
-	@Autowired
-	private ModuleRepository moduleRepository;
+	@Autowired private SessionRepository sessionRepository;
+	@Autowired private UserRepository userRepository;
+	@Autowired private SectorRepository sectorRepository;
+	@Autowired private ModuleRepository moduleRepository;
+	@Autowired private AbsenceRepository absenceRepository;
 	
 	
 	public long getCount() {
@@ -38,7 +36,7 @@ public class SessionService {
 	}
 
 	public List<Session> getSessionsByUser(int id) {
-		return sessionRepository.getSessionsByUserId(id);
+		return sessionRepository.findByUserId(id);
 	}
 
 	public Session createSession(int userId, Session session) {
@@ -72,6 +70,27 @@ public class SessionService {
 	}
 
 	public void deleteById(int sessionId) {
+		absenceRepository.deleteAbsencesBySessionId(sessionId);
 		sessionRepository.deleteById(sessionId);
+	}
+	
+	public void deleteByUserId(int userId) {
+		List<Session> sessions = this.getSessionsByUser(userId);
+		
+		sessions.stream()
+			.forEach(session -> this.deleteById(session.getId()));
+	}
+
+	public void deleteByModuleId(int id) {
+		List <Session> sessions = sessionRepository.findByModuleId(id);
+
+		sessions.stream()
+			.forEach(session -> this.deleteById(session.getId()));
+	}
+
+	public void deleteBySectorId(int id) {
+		List <Session> sessions = sessionRepository.findBySectorId(id);
+		sessions.stream()
+			.forEach(session -> this.deleteById(session.getId()));
 	}
 }

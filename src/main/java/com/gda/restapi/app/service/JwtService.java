@@ -38,7 +38,7 @@ public class JwtService {
 	@Value("${application.security.jwt.secret-key}")
 	private String SECRET_KEY;
 
-	private final int TOKEN_MAX_AGE = 60 * 1000; 
+	private final int TOKEN_MAX_AGE = 60 * 60 * 1000; 
 
 	public Optional<String> getToken(HttpServletRequest request) {
 		String token = request.getHeader("Authorization");

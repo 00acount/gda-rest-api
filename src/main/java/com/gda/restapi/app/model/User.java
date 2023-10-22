@@ -1,6 +1,6 @@
 package com.gda.restapi.app.model;
 
-import java.time.LocalDate;
+import java.time.LocalDate; 
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -52,8 +52,10 @@ public class User implements UserDetails {
 	private LocalDate registeredOn;
 	private LocalDateTime lastSeen;
 	
-	@checkUserRole(regexp = "^(ADMIN|USER)$", message = "The user must has a role 'ADMIN' or 'USER'")
+	@checkUserRole(regexp = "^(SUPER_ADMIN|ADMIN|USER)$", message = "The user must has a role 'ADMIN' or 'USER'")
 	private String role;
+	
+	private boolean isOnline;
 
 	@JsonIgnore
 	@Override
@@ -91,4 +93,12 @@ public class User implements UserDetails {
 		return true;
 	}
 	
+	public void setIsOnline(boolean isOnline) {
+		this.isOnline = isOnline; 
+	}
+	
+	public boolean getIsOnline() {
+		return this.isOnline;
+	}
+
 }
