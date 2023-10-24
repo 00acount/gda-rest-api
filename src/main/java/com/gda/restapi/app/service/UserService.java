@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.gda.restapi.app.exception.ConflictedResourceException;
 import com.gda.restapi.app.exception.ResourceNotFoundException;
 import com.gda.restapi.app.model.Role;
 import com.gda.restapi.app.model.User;
@@ -39,6 +40,11 @@ public class UserService {
 	}
 
 	public User create(User user) {
+		boolean isEmailAvailable = userRepository.findByEmail(user.getEmail()).isEmpty();
+		
+		if (!isEmailAvailable) 
+			throw new ConflictedResourceException("This email is not available. Try using another email");
+
 		user.setRegisteredOn(LocalDate.now());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepository.save(user);

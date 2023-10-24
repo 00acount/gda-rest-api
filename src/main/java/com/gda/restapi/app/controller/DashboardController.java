@@ -46,12 +46,8 @@ public class DashboardController {
 		var isSuperAdmin = authentication.getAuthorities().contains(
 							new SimpleGrantedAuthority(Role.SUPER_ADMIN.name()));
 
-		System.out.println(isSuperAdmin);
-
 		Role role = isSuperAdmin? Role.SUPER_ADMIN: Role.ADMIN;
 		
-		System.out.println(role);
-
 		Map<String, Object> response =  getResponse(role);
 
         FilterProvider filters = new SimpleFilterProvider().addFilter("UserWithoutPass", SimpleBeanPropertyFilter.serializeAllExcept("password"));
@@ -72,12 +68,10 @@ public class DashboardController {
 		List<User> latestUsers = new ArrayList<>();
 
 		if (role.equals(Role.ADMIN)) {
-			System.out.println("ad");
 			overview.put("numberOfUsers", userService.getUsersCount());
 			latestUsers = userService.getLatestUsers();
 			
 		} else if (role.equals(Role.SUPER_ADMIN)) {
-			System.out.println("s_ad");
 			overview.put("numberOfUsers", userService.getCount());
 			latestUsers = userService.getLatestUsersAndAdmins();
 			

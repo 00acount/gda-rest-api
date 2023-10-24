@@ -12,7 +12,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.gda.restapi.app.service.JwtService;
+import com.gda.restapi.app.auth.JwtService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

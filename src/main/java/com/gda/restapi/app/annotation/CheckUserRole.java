@@ -13,7 +13,7 @@ import jakarta.validation.Payload;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = checkUserRoleValidator.class)
-public @interface checkUserRole {
+public @interface CheckUserRole {
 	String message() default "";
 	String regexp();
     Class<?>[] groups() default {};

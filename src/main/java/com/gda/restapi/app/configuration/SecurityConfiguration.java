@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
@@ -30,8 +29,6 @@ public class SecurityConfiguration {
 		http.csrf((csrf) -> csrf.disable())
 			.cors(cors -> cors.configurationSource(corsConfigurationSource))
 			.authorizeHttpRequests((authorize) -> authorize
-//				.anyRequest().permitAll()
-				.requestMatchers(mvc.pattern("/h2-console/**")).permitAll()
 				.requestMatchers(mvc.pattern(BASE_PATH + "/login")).permitAll()
 				.requestMatchers(mvc.pattern(BASE_PATH + "/admin/**")).hasAnyAuthority("ADMIN", "SUPER_ADMIN")
 				.requestMatchers(mvc.pattern(BASE_PATH + "/user/**")).hasAuthority("USER")
@@ -40,11 +37,7 @@ public class SecurityConfiguration {
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authenticationProvider(authenticationProvider)
 			.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) 
-//			.headers(header -> header.frameOptions(frame -> frame.sameOrigin()))
-			.headers(header -> header.frameOptions(frame -> frame.disable()))
-			.logout(logout -> logout
-					.logoutUrl("/api/v1/logout")
-					.logoutSuccessHandler((req, res, auth) -> SecurityContextHolder.clearContext()));
+			.headers(header -> header.frameOptions(frame -> frame.disable()));
 
 
 		return http.build();

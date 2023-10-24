@@ -1,28 +1,19 @@
 package com.gda.restapi.app.util;
 
 import java.awt.Color;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.core.io.DefaultResourceLoader;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-
 import com.gda.restapi.app.model.Absence;
 import com.gda.restapi.app.model.Session;
 import com.gda.restapi.app.model.Student;
-import com.lowagie.text.BadElementException;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
-import com.lowagie.text.Image;
 import com.lowagie.text.Paragraph;
-import com.lowagie.text.alignment.HorizontalAlignment;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 

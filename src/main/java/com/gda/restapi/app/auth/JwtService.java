@@ -1,4 +1,4 @@
-package com.gda.restapi.app.service;
+package com.gda.restapi.app.auth;
 
 import java.security.Key; 
 import java.util.Date;
@@ -10,6 +10,7 @@ import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -55,10 +56,16 @@ public class JwtService {
 		Authentication authentication = SecurityContextHolder
 											.getContext().getAuthentication();
 
-		String username = (String) authentication.getPrincipal();
-		String token = generateToken(new User(username, "", List.of()));
-		
-		response.setHeader("TOKEN", token);
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+
+			String username = (String) authentication.getPrincipal();
+			String token = generateToken(new User(username, "", List.of()));
+			
+			response.setHeader("TOKEN", token);
+		} else {
+			response.setStatus(403);
+		}
+			
 	}
 	
 	public String generateToken(UserDetails userDetails) {

@@ -2,7 +2,7 @@ package com.gda.restapi.app.model;
 
 import java.time.LocalDate;
 
-import com.gda.restapi.app.annotation.checkUserRole;
+import com.gda.restapi.app.annotation.CheckUserRole;
 import com.gda.restapi.app.annotation.CheckSessionTime;
 
 import jakarta.persistence.Entity;
@@ -39,7 +39,7 @@ public class Session {
 	@NotNull(message = "sector is required")
 	private Sector sector;
 
-	@checkUserRole(regexp = "^(S1|S2|S3|S4|S5|S6)$", message = "semester field must be equal to the value among S1 and S6")
+	@CheckUserRole(regexp = "^(S1|S2|S3|S4|S5|S6)$", message = "semester field must be equal to the value among S1 and S6")
 	private String semester;
 	
 	@CheckSessionTime(message = "the session time is incorrect")

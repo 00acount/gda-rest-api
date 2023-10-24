@@ -3,7 +3,7 @@ package com.gda.restapi.app.model;
 
 import java.time.LocalDate;
 
-import com.gda.restapi.app.annotation.checkUserRole;
+import com.gda.restapi.app.annotation.CheckUserRole;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,7 +43,7 @@ public class Student {
 	@JoinColumn(name = "sector_id")
 	private Sector sector;
 
-	@checkUserRole(regexp = "^(S1|S2|S3|S4|S5|S6)$", message = "Semester is required")
+	@CheckUserRole(regexp = "^(S1|S2|S3|S4|S5|S6)$", message = "Semester is required")
 	private String semester;
 
 }

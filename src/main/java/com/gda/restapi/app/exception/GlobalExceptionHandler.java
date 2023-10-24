@@ -79,5 +79,37 @@ public class GlobalExceptionHandler {
 		
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
 	}
+
+	//////////////////////////////////////////////////////////////////////////////////////
+
+	@ExceptionHandler(ConflictedResourceException.class)
+	public ResponseEntity<ErrorResponse> handleConflictedResourceException
+														(ConflictedResourceException ex) {
+		
+		ErrorResponse errorResponse = new ErrorResponse();
+
+		errorResponse.setStatus(HttpStatus.CONFLICT.value());
+		errorResponse.setError("Conflicted Request");
+		errorResponse.setMessage(ex.getMessage());
+		errorResponse.setTimestamp(LocalDateTime.now().withNano(0));
+		
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+	}
 	
+	//////////////////////////////////////////////////////////////////////////////////////
+
+	@ExceptionHandler(BadCredentialsException.class)
+	public ResponseEntity<ErrorResponse> handleBadCredentialsException
+														(BadCredentialsException ex) {
+		
+		ErrorResponse errorResponse = new ErrorResponse();
+
+		errorResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
+		errorResponse.setError("Bad Credentials");
+		errorResponse.setMessage(ex.getMessage());
+		errorResponse.setTimestamp(LocalDateTime.now().withNano(0));
+		
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+	}
+
 }

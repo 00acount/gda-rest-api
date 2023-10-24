@@ -1,6 +1,6 @@
 package com.gda.restapi.app.model;
 
-import java.time.LocalDate; 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -11,8 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gda.restapi.app.annotation.checkUserRole;
+import com.gda.restapi.app.annotation.CheckUserRole;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -43,6 +44,7 @@ public class User implements UserDetails {
 	private String lastName;
 
 	@Email(message = "Invalid email format")
+	@Column(unique = true)
 	private String email;
 
 	@NotBlank(message = "password is required")
@@ -52,7 +54,7 @@ public class User implements UserDetails {
 	private LocalDate registeredOn;
 	private LocalDateTime lastSeen;
 	
-	@checkUserRole(regexp = "^(SUPER_ADMIN|ADMIN|USER)$", message = "The user must has a role 'ADMIN' or 'USER'")
+	@CheckUserRole(regexp = "^(SUPER_ADMIN|ADMIN|USER)$", message = "The user must has a role 'ADMIN' or 'USER'")
 	private String role;
 	
 	private boolean isOnline;
