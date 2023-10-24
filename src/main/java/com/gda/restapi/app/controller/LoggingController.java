@@ -26,6 +26,7 @@ public class LoggingController {
 	
 	@PostMapping("/login")
 	public void login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(authenticationRequest);
 		loggingService.authenticate(authenticationRequest);
 		jwtService.setToken(response);
 	}
