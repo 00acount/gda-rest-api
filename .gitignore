@@ -1,5 +1,5 @@
 HELP.md
-*.sql
+src/main/resources/data.sql
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
