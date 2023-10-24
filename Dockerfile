@@ -24,6 +24,10 @@ COPY --from=build /app/target/*.jar ./app.jar
 EXPOSE 8080
 
 ENV FRONTEND_DOMAIN=""
+ENV DB_HOST=""
+ENV DB_USER=""
+ENV DB_PASSWORD=""
+ENV JWT_SECRET_KEY=""
 
 # Define the command to run your Spring Boot application
 CMD ["java", "-jar", "app.jar"]
