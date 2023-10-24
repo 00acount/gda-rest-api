@@ -35,7 +35,7 @@ public class User implements UserDetails {
 	private static final long serialVersionUID = 8726135811509899927L;
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@NotBlank(message = "firstName is required and must consist of at least one letter")
 	private String firstName;
@@ -47,7 +47,7 @@ public class User implements UserDetails {
 	@Column(unique = true)
 	private String email;
 
-	@NotBlank(message = "password is required")
+	@NotBlank(message = "password is required, if you dont wanna change it put '$$_#@!#@' as a value")
 	@Size(min = 8, message = "The password must consist of at least 8 letters")
 	private String password;
 

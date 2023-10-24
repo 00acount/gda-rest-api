@@ -59,18 +59,20 @@ public class UserController {
 	// POST '/users' //
 	@PostMapping("/users")
 	public ResponseEntity<MappingJacksonValue> createUser(@RequestBody @Valid User user, Authentication authentication) {
-		User savedUser = userService.create(user);
 		
 		var isAdmin = isAdmin(authentication);
 		
-		if (isAdmin && !user.getRole().equals(Role.USER))
+		if (isAdmin && !user.getRole().equals(Role.USER.name()))
 			throw new ResourceForbiddenException("You don't have privilege to access these resources");
+
+		User savedUser = userService.create(user);
 
 		UriComponentsBuilder builder = ServletUriComponentsBuilder.fromCurrentRequestUri();
 		URI location = builder.path("/" + savedUser.getId()).build().toUri();
 		
 		MappingJacksonValue mappingJacksonValue = 
 							userWithoutPasswordFilter(user);
+
 		
 		return ResponseEntity.created(location).body(mappingJacksonValue);
 	}
@@ -115,8 +117,9 @@ public class UserController {
 		var registeredUser = userService.getById(intId);
 		var isAdmin = isAdmin(authentication);
 
-		if (isAdmin && !registeredUser.getRole().equals(Role.ADMIN.name()))
-			throw new ResourceForbiddenException("You can't delete these resources");
+		if (isAdmin && !registeredUser.getRole().equals(Role.USER.name()))
+			throw new ResourceForbiddenException("You can't update these resources");
+
 		
 		user.setId(intId);
 		user.setRole(registeredUser.getRole());

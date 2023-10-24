@@ -2,8 +2,8 @@ HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
-!**/src/main/resources/data.sql
 !**/src/test/**/target/
+data.sql
 
 ### STS ###
 .apt_generated

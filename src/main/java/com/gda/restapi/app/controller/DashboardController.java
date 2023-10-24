@@ -45,7 +45,7 @@ public class DashboardController {
 		
 		var isSuperAdmin = authentication.getAuthorities().contains(
 							new SimpleGrantedAuthority(Role.SUPER_ADMIN.name()));
-
+		
 		Role role = isSuperAdmin? Role.SUPER_ADMIN: Role.ADMIN;
 		
 		Map<String, Object> response =  getResponse(role);

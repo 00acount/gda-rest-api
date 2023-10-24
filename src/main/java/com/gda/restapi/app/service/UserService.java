@@ -45,7 +45,10 @@ public class UserService {
 		if (!isEmailAvailable) 
 			throw new ConflictedResourceException("This email is not available. Try using another email");
 
+		user.setId(null);
 		user.setRegisteredOn(LocalDate.now());
+		user.setLastSeen(null);
+		user.setIsOnline(false);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
 		return user;
@@ -57,10 +60,17 @@ public class UserService {
 	}
 
 	public User update(User newUser) {
-		User oldUser = getById(newUser.getId());
+		User oldUser = this.getById(newUser.getId());
 
-		newUser.setLastSeen(oldUser.getLastSeen());
+		boolean isEmailAvailable = userRepository.findByEmail(newUser.getEmail()).isEmpty();
+		if (!isEmailAvailable && !oldUser.getEmail().equals(newUser.getEmail())) 
+			throw new ConflictedResourceException("This email is not available. Try using another email");
+
+
+		newUser.setId(oldUser.getId());
 		newUser.setRegisteredOn(oldUser.getRegisteredOn());
+		newUser.setLastSeen(oldUser.getLastSeen());
+		newUser.setIsOnline(oldUser.getIsOnline());
 
 		if (newUser.getPassword() == "" || 
 				newUser.getPassword() == null ||
