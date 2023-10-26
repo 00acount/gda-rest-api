@@ -1,6 +1,6 @@
 package com.gda.restapi.app.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -40,9 +40,9 @@ public class SessionGuard {
 		var user = userRepository.findByEmail(email);
 		
 		return user.isPresent() && 
-				( user.get().getRole().equals(Role.ADMIN.name()) 
-					||
-				user.get().getId() == intId);
+				(user.get().getRole().equals(Role.ADMIN.name()) 
+				 || user.get().getRole().equals(Role.SUPER_ADMIN.name()) 
+				|| user.get().getId() == intId);
 	}
 	
 }
